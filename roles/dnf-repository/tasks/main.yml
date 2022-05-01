@@ -1,0 +1,27 @@
+- name: Add Microsoft signing key
+  become: true
+  ansible.builtin.rpm_key:
+    key: "https://packages.microsoft.com/keys/microsoft.asc"
+    state: present
+
+- name: Add Microsoft repository
+  become: true
+  ansible.builtin.yum_repository:
+    name: packages-microsoft-com-prod
+    description: packages-microsoft-com-prod
+    file: microsoft
+    baseurl: "https://packages.microsoft.com/rhel/7/prod/"
+    enabled: yes
+    gpgcheck: yes
+    gpgkey: "https://packages.microsoft.com/keys/microsoft.asc"
+
+- name: Add VSCode repository
+  become: true
+  ansible.builtin.yum_repository:
+    name: code
+    description: Visual Studio Code
+    file: vscode
+    baseurl: "https://packages.microsoft.com/yumrepos/vscode"
+    enabled: yes
+    gpgcheck: yes
+    gpgkey: "https://packages.microsoft.com/keys/microsoft.asc"

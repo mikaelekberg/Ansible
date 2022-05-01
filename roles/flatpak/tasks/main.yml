@@ -1,0 +1,11 @@
+- name: Enable Flathub
+  community.general.flatpak_remote:
+    name: flathub
+    state: present
+    flatpakrepo_url: https://flathub.org/repo/flathub.flatpakrepo
+
+- name: Install Flatpaks
+  loop: "{{ flatpaks }}"
+  community.general.flatpak:
+    name: "{{ item }}"
+    state: present
