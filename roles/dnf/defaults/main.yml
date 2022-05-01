@@ -1,6 +1,5 @@
 packages:
   - gnome-tweaks
-  - kitty
   - zsh
   - code
   - powershell

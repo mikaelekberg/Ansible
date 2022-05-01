@@ -1,0 +1,12 @@
+- name: Install Flatpaks for Gaming
+  loop: "{{ gaming_flatpaks }}"
+  community.general.flatpak:
+    name: "{{ item }}"
+    state: present
+
+- name: Install dnf packages for Gaming
+  become: true
+  loop: "{{ gaming_packages }}"
+  package:
+    name: "{{ item }}"
+    state: present

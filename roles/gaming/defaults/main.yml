@@ -1,0 +1,5 @@
+gaming_flatpaks:
+  - com.valvesoftware.Steam
+
+gaming_packages:
+  - steam-devices
