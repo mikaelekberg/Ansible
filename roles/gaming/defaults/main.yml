@@ -1,5 +1,8 @@
 gaming_flatpaks:
   - com.valvesoftware.Steam
+  - com.heroicgameslauncher.hgl
 
 gaming_packages:
   - steam-devices
+  - winehq-staging
+  - lutris

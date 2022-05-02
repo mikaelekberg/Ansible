@@ -1,3 +1,14 @@
+- name: Add WineHQ repository
+  become: true
+  ansible.builtin.yum_repository:
+    name: WineHQ
+    description: WineHQ packages
+    file: winehq
+    baseurl: "https://dl.winehq.org/wine-builds/fedora/36/"
+    enabled: yes
+    gpgcheck: yes
+    gpgkey: "https://dl.winehq.org/wine-builds/winehq.key"
+
 - name: Install Flatpaks for Gaming
   loop: "{{ gaming_flatpaks }}"
   community.general.flatpak:
