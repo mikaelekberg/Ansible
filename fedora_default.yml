@@ -14,7 +14,7 @@
       import_role:
         name: flatpak
 
-    - name: Install Flatpaks
+    - name: Install Gaming stuff
       import_role:
         name: gaming
 
@@ -26,18 +26,10 @@
       import_role:
         name: fonts
 
-    - name: Add oh-my-posh to zsh
-      copy:
-        dest: "/home/{{ ansible_user_id }}/.zshrc"
-        content: |
-          HISTFILE=~/.histfile
-          HISTSIZE=1000
-          SAVEHIST=1000
-          bindkey -e
+    - name: Install and configure zsh
+      import_role:
+        name: zsh
 
-          zstyle :compinstall filename '/home/{{ ansible_user_id }}/.zshrc'
-
-          autoload -Uz compinit
-          compinit
-
-          eval "$(oh-my-posh init zsh --config ~/.poshthemes/amro.omp.json)"
+    - name: Install CLI tools
+      import_role:
+        name: cli

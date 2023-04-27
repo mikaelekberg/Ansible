@@ -1,4 +1,4 @@
-- name: Install dnf packages
+- name: Install CLI tool packages
   become: true
   loop: "{{ packages }}"
   package:

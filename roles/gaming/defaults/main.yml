@@ -4,5 +4,3 @@ gaming_flatpaks:
 
 gaming_packages:
   - steam-devices
-  - winehq-staging
-  - lutris
