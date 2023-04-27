@@ -1,0 +1,7 @@
+---
+- name: Configure Fedora Workstation
+  hosts: localhost
+  tasks:
+    - name: Install Gaming stuff
+      import_role:
+        name: gaming

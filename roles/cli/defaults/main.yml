@@ -1,0 +1,5 @@
+packages:
+  - azure-cli
+  - terraform
+  - kubectl
+  - helm

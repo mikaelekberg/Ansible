@@ -1,0 +1,43 @@
+- name: Clone zsh plugins github repository
+  loop: "{{ zsh_plugins }}"
+  git:
+    repo: "https://github.com/zsh-users/{{ item }}"
+    dest: "{{ lookup('env', 'HOME') }}/.zsh/{{ item }}"
+    clone: yes
+    update: yes
+
+- name: Configure zsh profile
+  copy:
+    dest: "/home/{{ ansible_user_id }}/.zshrc"
+    content: |
+      source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+      source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+      source ~/.zsh/zsh-history-substring-search/zsh-history-substring-search.zsh
+
+      eval "$(oh-my-posh init zsh --config https://gist.githubusercontent.com/MikaelEkberg/b4e9ddcc87cda9b01fc3b8d596bae945/raw/lakitu.omp.json)"
+      enable_poshtooltips
+
+      bindkey "^[[A" history-substring-search-up
+      bindkey "^[[B" history-substring-search-down
+      bindkey "^[[1;5C" forward-word
+      bindkey "^[[1;5D" backward-word
+
+      alias ls='ls --color=auto'
+      alias ll='ls -lah'
+      alias grep='grep --color=auto'
+      alias fgrep='fgrep --color=auto'
+      alias egrep='egrep --color=auto'
+
+      # Lines configured by zsh-newuser-install
+      HISTFILE=~/.histfile
+      HISTSIZE=1000
+      SAVEHIST=1000
+      bindkey -e
+      # End of lines configured by zsh-newuser-install
+
+      # The following lines were added by compinstall
+      zstyle :compinstall filename '/home/mekberg/.zshrc'
+
+      autoload -Uz compinit
+      compinit
+      # End of lines added by compinstall

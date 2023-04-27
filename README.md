@@ -7,5 +7,5 @@ Ansible configurations to configure Linux desktop.
 1. Run the command:
 
 ```
-ansible-playbook fedora_workstation.yml --ask-become-pass
+ansible-playbook fedora_default.yml --ask-become-pass
 ```
