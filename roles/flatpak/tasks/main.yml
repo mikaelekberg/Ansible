@@ -1,5 +1,0 @@
-- name: Install Flatpaks
-  loop: "{{ flatpaks }}"
-  community.general.flatpak:
-    name: "{{ item }}"
-    state: present

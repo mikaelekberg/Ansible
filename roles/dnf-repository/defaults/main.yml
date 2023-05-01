@@ -1,0 +1,21 @@
+repos:
+  - name: packages-microsoft-com-prod
+    description: packages-microsoft-com-prod
+    file: microsoft
+    baseurl: "https://packages.microsoft.com/rhel/8/prod/"
+    gpgkey: "https://packages.microsoft.com/keys/microsoft.asc"
+  - name: code
+    description: Visual Studio Code
+    file: vscode
+    baseurl: "https://packages.microsoft.com/yumrepos/vscode"
+    gpgkey: "https://packages.microsoft.com/keys/microsoft.asc"
+  - name: HashicorpStable
+    description: Hashicorp Stable
+    file: hashicorp
+    baseurl: "https://rpm.releases.hashicorp.com/fedora/$releasever/$basearch/stable"
+    gpgkey: "https://rpm.releases.hashicorp.com/gpg"
+  - name: kubernetes
+    description: Kubernetes
+    file: kubernetes
+    baseurl: "https://packages.cloud.google.com/yum/repos/kubernetes-el7-$basearch"
+    gpgkey: "https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg"

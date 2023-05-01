@@ -4,46 +4,14 @@
     key: "https://packages.microsoft.com/keys/microsoft.asc"
     state: present
 
-- name: Add Microsoft repository
+- name: Add dnf repositories
   become: true
+  loop: "{{ repos }}"
   ansible.builtin.yum_repository:
-    name: packages-microsoft-com-prod
-    description: packages-microsoft-com-prod
-    file: microsoft
-    baseurl: "https://packages.microsoft.com/rhel/8/prod/"
+    name: "{{ item.name }}"
+    description: "{{ item.description }}"
+    file: "{{ item.file }}"
+    baseurl: "{{ item.baseurl }}"
     enabled: yes
     gpgcheck: yes
-    gpgkey: "https://packages.microsoft.com/keys/microsoft.asc"
-
-- name: Add VSCode repository
-  become: true
-  ansible.builtin.yum_repository:
-    name: code
-    description: Visual Studio Code
-    file: vscode
-    baseurl: "https://packages.microsoft.com/yumrepos/vscode"
-    enabled: yes
-    gpgcheck: yes
-    gpgkey: "https://packages.microsoft.com/keys/microsoft.asc"
-
-- name: Add Terraform repository
-  become: true
-  ansible.builtin.yum_repository:
-    name: HashicorpStable
-    description: Hashicorp Stable
-    file: hashicorp
-    baseurl: "https://rpm.releases.hashicorp.com/fedora/$releasever/$basearch/stable"
-    enabled: yes
-    gpgcheck: yes
-    gpgkey: "https://rpm.releases.hashicorp.com/gpg"
-
-- name: Add Kubernetes repository
-  become: true
-  ansible.builtin.yum_repository:
-    name: kubernetes
-    description: Kubernetes
-    file: kubernetes
-    baseurl: "https://packages.cloud.google.com/yum/repos/kubernetes-el7-$basearch"
-    enabled: yes
-    gpgcheck: yes
-    gpgkey: "https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg"
+    gpgkey: "{{ item.gpgkey }}"

@@ -9,15 +9,13 @@
     gpgcheck: yes
     gpgkey: "https://dl.winehq.org/wine-builds/winehq.key"
 
-- name: Install Flatpaks for Gaming
-  loop: "{{ gaming_flatpaks }}"
+- name: Install Flatpaks
   community.general.flatpak:
-    name: "{{ item }}"
+    name: "{{ flatpaks }}"
     state: present
 
-- name: Install dnf packages for Gaming
+- name: Install dnf packages
   become: true
-  loop: "{{ gaming_packages }}"
-  package:
-    name: "{{ item }}"
+  ansible.builtin.dnf:
+    name: "{{ packages }}"
     state: present

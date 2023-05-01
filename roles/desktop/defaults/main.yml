@@ -1,7 +1,12 @@
+packages:
+  - gnome-tweaks
+  - code
+  - pinta
+
 flatpaks:
   - com.spotify.Client
   - com.bitwarden.desktop
   - com.discordapp.Discord
-  - com.mattjakeman.ExtensionManager
   - com.raggesilver.BlackBox
   - io.github.realmazharhussain.GdmSettings
+  - com.mattjakeman.ExtensionManager

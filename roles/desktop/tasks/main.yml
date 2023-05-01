@@ -3,3 +3,8 @@
   ansible.builtin.dnf:
     name: "{{ packages }}"
     state: present
+
+- name: Install Flatpaks
+  community.general.flatpak:
+    name: "{{ flatpaks }}"
+    state: present
