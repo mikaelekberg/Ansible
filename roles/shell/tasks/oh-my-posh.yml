@@ -1,4 +1,4 @@
-- name: Install Oh-My-Posh (Manual)
+- name: Install Oh-My-Posh (manual method)
   become: true
   get_url:
     url: https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/posh-linux-amd64
@@ -10,23 +10,38 @@
   ansible.builtin.file:
     path: "/home/{{ ansible_user_id }}/.poshthemes"
     state: directory
+  when: download_builtin_ohmyposh_themes
 
 - name: Download oh-my-posh themes
   get_url:
     url: https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/themes.zip
     dest: "/home/{{ ansible_user_id }}/.poshthemes/themes.zip"
+  when: download_builtin_ohmyposh_themes
 
 - name: Extract oh-my-posh themes
   ansible.builtin.unarchive:
     src: "/home/{{ ansible_user_id }}/.poshthemes/themes.zip"
     dest: "/home/{{ ansible_user_id }}/.poshthemes"
     mode: u+rw
+  when: download_builtin_ohmyposh_themes
 
 - name: Set permissions oh-my-posh themes
   become: true
   shell: "chmod u+rw /home/{{ ansible_user_id }}/.poshthemes/*.json"
+  when: download_builtin_ohmyposh_themes
 
 - name: Remove oh-my-posh themes.zip
   ansible.builtin.file:
     path: "/home/{{ ansible_user_id }}/.poshthemes/themes.zip"
     state: absent
+  when: download_builtin_ohmyposh_themes
+
+- name: Font JetBrainsMono exists
+  stat:
+    path: "{{ lookup('env', 'HOME') }}/.local/share/fonts/jetbrainsmono-nerd-font-mono/JetBrainsMonoNerdFontMono-Regular.ttf"
+  register: jetbrainsmono_exists
+
+- name: Install fonts
+  loop: "{{ fonts }}"
+  ansible.builtin.command: oh-my-posh font install {{ item }}
+  when: "not jetbrainsmono_exists.stat.exists"

@@ -1,0 +1,8 @@
+- name: Install dnf packages
+  import_tasks: dnf.yml
+
+- name: Install and configure oh-my-posh
+  import_tasks: oh-my-posh.yml
+
+- name: Configure zsh
+  import_tasks: zsh.yml

@@ -1,6 +1,6 @@
-gaming_flatpaks:
+flatpaks:
   - com.valvesoftware.Steam
   - com.heroicgameslauncher.hgl
 
-gaming_packages:
+packages:
   - steam-devices

@@ -1,4 +1,11 @@
+packages:
+  - zsh
+  - powershell
+
 zsh_plugins:
   - zsh-autosuggestions
   - zsh-syntax-highlighting
   - zsh-history-substring-search
+
+fonts:
+  - JetBrainsMono
